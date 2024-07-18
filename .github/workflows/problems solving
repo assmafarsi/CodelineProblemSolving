@@ -1,0 +1,145 @@
+problem_!.py(import re
+
+def is_valid_username(username):
+    if username and len(username) <= 50:
+        return True
+    return False
+
+def is_valid_password(password):
+    if (len(password) >= 8 and 
+        any(c.islower() for c in password) and
+        any(c.isupper() for c in password) and
+        any(c.isdigit() for c in password) and
+        any(c in "!@#$%^&*()_+-=[]{}|;:'\",.<>?/`~" for c in password)):
+        return True
+    return False
+
+def is_valid_email(email):
+    email_regex = re.compile(
+        r'^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$'
+    )
+    if email_regex.match(email):
+        return True
+    return False
+
+def main():
+    username = input("Enter Username: ")
+    password = input("Enter Password: ")
+    email = input("Enter Email: ")
+
+    if is_valid_username(username):
+        print("Username is valid.")
+    else:
+        print("Username is invalid.")
+
+    if is_valid_password(password):
+        print("Password is valid.")
+    else:
+        print("Password is invalid.")
+
+    if is_valid_email(email):
+        print("Email is valid.")
+    else:
+        print("Email is invalid.")
+
+if __name__ == "__main__":
+    main()
+)
+
+problem_2.py(
+def decimal_to_binary(decimal_number):
+    if decimal_number == 0:
+        return "0"
+
+    binary_digits = []
+    while decimal_number > 0:
+        remainder = decimal_number % 2
+        binary_digits.append(str(remainder))
+        decimal_number = decimal_number // 2
+
+    binary_digits.reverse()
+    return ''.join(binary_digits)
+
+def main():
+    decimal_number = int(input("Enter a positive decimal number: "))
+    if decimal_number < 0:
+        print("Please enter a positive number.")
+    else:
+        binary_number = decimal_to_binary(decimal_number)
+        print(f"Binary equivalent: {binary_number}")
+
+if __name__ == "__main__":
+    main()
+)
+problem_3.py(def display_menu():
+    print("\nMenu:")
+    print("1. Display a right-angle triangle of ones")
+    print("2. Display a Palindromic Triangle")
+    print("3. Help")
+    print("4. Exit")
+
+def display_right_angle_triangle(lines):
+    for i in range(1, lines + 1):
+        print("1" * i)
+
+def display_palindromic_triangle(lines):
+    for i in range(1, lines + 1):
+        left_half = ''.join(str(j) for j in range(1, i + 1))
+        right_half = left_half[-2::-1]  # reverse left_half except the last character
+        print(left_half + right_half)
+
+def show_help():
+    print("\nHelp:")
+    print("1. Display a right-angle triangle of ones: Prompts for the number of lines and displays a triangle of ones.")
+    print("2. Display a Palindromic Triangle: Prompts for the number of lines and displays a palindromic triangle.")
+    print("3. Help: Displays this help message.")
+    print("4. Exit: Exits the program.")
+
+def main():
+    while True:
+        display_menu()
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            lines = int(input("Enter the number of lines: "))
+            display_right_angle_triangle(lines)
+        elif choice == '2':
+            lines = int(input("Enter the number of lines: "))
+            display_palindromic_triangle(lines)
+        elif choice == '3':
+            show_help()
+        elif choice == '4':
+            print("Exiting the program.")
+            break
+        else:
+            print("Invalid choice. Please enter a number between 1 and 4.")
+
+if __name__ == "__main__":
+    main()
+)
+
+problem_$.py(def get_even_squares(numbers):
+    return [x**2 for x in numbers if x % 2 == 0]
+
+def get_sublist(numbers, start_index, end_index):
+    return numbers[start_index:end_index]
+
+def main():
+    # Get list of integers from the user
+    numbers = list(map(int, input("Enter the list of integers (comma-separated): ").split(',')))
+    
+    # Get the squares of even numbers
+    even_squares = get_even_squares(numbers)
+    print(f"List of squares of even numbers: {even_squares}")
+
+    # Get start and end index for slicing the list
+    start_index = int(input("Enter start index: "))
+    end_index = int(input("Enter end index: "))
+    
+    # Get the sublist
+    sublist = get_sublist(numbers, start_index, end_index)
+    print(f"Sublist: {sublist}")
+
+if __name__ == "__main__":
+    main()
+)
